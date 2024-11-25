@@ -3,11 +3,11 @@
 export default function ArticleCard({ data, index, handleDeleteClick, api_server, children }) {
 
 
-    function handleModifyClick(e) {
-        const dataIndex = Number(e.target.getAttribute('data-index'));
-        setCurrentIndex(dataIndex);
-        setModifyArticle(articles[dataIndex]);
-    }
+    // function handleModifyClick(e) {
+    //     const dataIndex = Number(e.target.getAttribute('data-index'));
+    //     setCurrentIndex(dataIndex);
+    //     setModifyArticle(articles[dataIndex]);
+    // }
 
 
 
@@ -21,7 +21,7 @@ export default function ArticleCard({ data, index, handleDeleteClick, api_server
                     <p>Tags: {data.tags.join(", ")}</p>
                     <div className="buttons_div d-flex justify-content-end">
                         <button onClick={handleDeleteClick} data-index={index} data-slug={data.slug} className="btn btn-outline-danger">Cancella</button>
-                        <button onClick={handleModifyClick} data-index={index} className="ms-3 btn btn-outline-primary">Modifica</button>
+                        {/* <button onClick={handleModifyClick} data-index={index} className="ms-3 btn btn-outline-primary">Modifica</button> */}
                     </div>
                     {children}
                 </div>

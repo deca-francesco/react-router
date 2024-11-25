@@ -7,6 +7,9 @@ export default function SearcBar({ fetchData, postsData, setPostsData }) {
 
     function search() {
 
+        console.log(postsData);
+
+
         const searchPosts = postsData.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase()))
 
         setPostsData(searchPosts)

@@ -50,10 +50,6 @@ export default function AppMain() {
     function handleFormField(e) {
         const { name, value, checked, type } = e.target;
 
-        if (name === "slug") {
-            formData.slug = formData.title.toLowerCase()
-        }
-
         const newValue = type === 'checkbox' ? checked : value;
 
         if (name === 'tags') {
@@ -72,11 +68,12 @@ export default function AppMain() {
     function handleFormSubmit(e) {
         e.preventDefault();
 
-        console.log(e.target);
+        const titleToSlug = formData.title.split(" ").join("-");
 
+        console.log(titleToSlug);
 
         const newItem = {
-            slug: formData.title.toLowercase().split(" ").join("-"),
+            slug: titleToSlug.toLowerCase(),
             ...formData
         }
 
@@ -91,18 +88,21 @@ export default function AppMain() {
             .then(result => {
                 console.log("result", result);
                 setPostsData(result.data)
+                setFormData(initialFormData);
+                fetchData()
             })
-        setFormData(initialFormData);
+
     }
 
     function handleDeleteClick(e) {
         e.preventDefault()
 
-        const slug = e.target.getAttribute("data.slug")
+        const dataSlug = e.target.getAttribute("data-slug")
 
-        console.log(slug);
+        console.log(dataSlug);
 
-        fetch(api_server + end_point + slug, {
+
+        fetch(api_server + end_point + "/" + dataSlug, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json"
@@ -114,7 +114,7 @@ export default function AppMain() {
                 setPostsData(result.data)
             })
 
-
+        fetchData()
 
     }
 

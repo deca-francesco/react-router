@@ -13,14 +13,16 @@ export default function Form({ formData, handleFormField, handleFormSubmit }) {
         show_btn.classList.remove("d-none")
     }
 
+
+
     return (
         <>
             <button className="btn btn-primary" id="show-form-btn" onClick={handleShowForm}>Inserisci nuovo articolo</button>
 
             <form onSubmit={handleFormSubmit} className="mt-4 d-none" id="form">
                 <div className="mb-3">
-                    <label htmlFor="title" className="form-label" required >Titolo del nuovo articolo</label>
-                    <input type="text" className="form-control" name="title" id="title" placeholder="Nuovo titolo" value={formData.title} onChange={handleFormField} />
+                    <label htmlFor="title" className="form-label" >Titolo del nuovo articolo</label>
+                    <input type="text" className="form-control" name="title" id="title" placeholder="Nuovo titolo" value={formData.title} onChange={handleFormField} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="image" className="form-label">Immagine</label>
