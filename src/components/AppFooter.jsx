@@ -3,7 +3,7 @@ export default function AppFooter() {
 
     return (
         <footer>
-            <div className="container pt-5">
+            <div className="container">
                 <h5>&copy; <span>{new Date().getFullYear()}</span> FDC</h5>
             </div>
         </footer>
