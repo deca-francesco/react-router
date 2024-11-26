@@ -6,6 +6,7 @@ import About from './pages/About.jsx';
 import Posts from './pages/Posts.jsx';
 import DefaultLayout from './pages/DefaultLayout.jsx';
 import ArticleDetails from './pages/ArticleDetails.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 
 function App({ api_server, end_point }) {
@@ -26,6 +27,8 @@ function App({ api_server, end_point }) {
               <Route index element={<Posts api_server={api_server} end_point={end_point} />} />
               <Route path=':slug/' element={<ArticleDetails api_server={api_server} end_point={end_point} />} />
             </Route>
+
+            <Route path='*' element={<NotFound />} />
 
           </Route>
         </Routes>
