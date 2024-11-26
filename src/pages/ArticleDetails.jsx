@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router";
 import { useEffect, useState } from "react";
 
-export default function ArticleDetails({ api_server, end_point, index }) {
+export default function ArticleDetails({ api_server, end_point }) {
 
     const navigate = useNavigate()
     const [article, setArticle] = useState(null)
@@ -10,6 +10,10 @@ export default function ArticleDetails({ api_server, end_point, index }) {
     const url = `${api_server}${end_point}/${slug}`
     // console.log(url);
     // console.log(index);
+
+    const [prev, setPrev] = useState(null)
+    const [next, setNext] = useState(null)
+
 
 
     useEffect(
@@ -25,11 +29,56 @@ export default function ArticleDetails({ api_server, end_point, index }) {
                         navigate("/404")
                     } else {
                         setArticle(data.data)
+                        fetchPrevNext(data.data.slug)
                     }
                 }).catch(err => {
                     console.log(err);
                 })
-        }, [])
+
+
+        }, [slug])
+
+
+
+
+
+    function fetchPrevNext(currentSlug) {
+        fetch(`${api_server}${end_point}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.data);
+
+                const result = data.data
+
+                const currentPostIndex = result.indexOf(result.find(item => item.slug === currentSlug))
+
+                console.log(currentPostIndex);
+
+                setPrev(result[currentPostIndex - 1])
+                setNext(result[currentPostIndex + 1])
+
+                console.log(result[currentPostIndex]);
+                console.log(prev);
+                console.log(next);
+
+            })
+    }
+
+    function prevHandle(prev) {
+        if (prev === null) {
+            navigate("/404")
+        } else {
+            navigate(`/posts/${prev.slug}`)
+        }
+    }
+
+    function nextHandle(next) {
+        if (next === null) {
+            navigate("/404")
+        } else {
+            navigate(`/posts/${next.$slug}`)
+        }
+    }
 
 
 
@@ -53,9 +102,10 @@ export default function ArticleDetails({ api_server, end_point, index }) {
                                         <Link to="/posts">
                                             <button type="button" className="btn btn-outline-dark mt-3" >Torna ai posts</button>
                                         </ Link>
-                                        <div className="mt-4 d-none">
-                                            <button type="button" className="btn btn-outline-secondary" >Post precedente</button>
-                                            <button type="button" className="btn btn-outline-secondary ms-3" >Post successivo</button>
+                                        <div className="mt-4 ">
+                                            <button type="button" className="btn btn-outline-secondary" onClick={prevHandle} >Post precedente</button>
+                                            <span></span>
+                                            <button type="button" className="btn btn-outline-secondary ms-3" onClick={nextHandle} >Post successivo</button>
                                         </div>
                                     </div>
                                 </div>
