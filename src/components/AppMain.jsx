@@ -36,7 +36,7 @@ export default function AppMain() {
 
                 // console.log(data);
 
-                setPostsData(data)
+                setPostsData(data.data)
 
             }).catch(err => {
                 console.error(err.message);
@@ -70,9 +70,12 @@ export default function AppMain() {
     function handleFormSubmit(e) {
         e.preventDefault();
 
+        // console.log(e.target);
+
+
         const titleToSlug = formData.title.split(" ").join("-");
 
-        console.log(titleToSlug);
+        // console.log(titleToSlug.toLowerCase());
 
         const newItem = {
             slug: titleToSlug.toLowerCase(),
@@ -92,6 +95,7 @@ export default function AppMain() {
                 setPostsData(result.data)
                 setFormData(initialFormData);
             })
+
     }
 
     function handleDeleteClick(e) {
@@ -99,7 +103,7 @@ export default function AppMain() {
 
         const dataSlug = e.target.getAttribute("data-slug")
 
-        console.log(dataSlug);
+        // console.log(dataSlug);
 
 
         fetch(api_server + end_point + "/" + dataSlug, {
@@ -126,7 +130,7 @@ export default function AppMain() {
                 <SearcBar fetchData={fetchData} postsData={postsData} setPostsData={setPostsData} />
 
                 <ArticleList>
-                    {postsData.data ? postsData.data.map((post, index) => (
+                    {postsData ? postsData.map((post, index) => (
                         <ArticleCard key={index} data={post} index={index} api_server={api_server} handleDeleteClick={handleDeleteClick} >
                         </ArticleCard>
                     )) : <p>No data found</p>

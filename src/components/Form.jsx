@@ -22,7 +22,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit }) {
             <form onSubmit={handleFormSubmit} className="mt-4 d-none" id="form">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label" >Titolo del nuovo articolo</label>
-                    <input type="text" className="form-control" name="title" id="title" placeholder="Nuovo titolo" value={formData.title} onChange={handleFormField} required />
+                    <input type="text" className="form-control" name="title" id="title" placeholder="Nuovo titolo" value={formData.title} onChange={handleFormField} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="image" className="form-label">Immagine</label>
@@ -73,7 +73,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit }) {
                 </div>
 
                 <button className="btn btn-success mt-3" type="submit">Inserisci</button>
-                <button className="btn btn-secondary mt-3 ms-2" onClick={handleCloseForm}>Chiudi</button>
+                <button className="btn btn-secondary mt-3 ms-2" type="button" onClick={handleCloseForm}>Chiudi</button>
             </form>
         </>
     )
