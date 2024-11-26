@@ -6,7 +6,7 @@ import Form from './Form.jsx';
 import SearcBar from './Searchbar.jsx';
 
 
-export default function AppMain() {
+export default function AppMain({ api_server, end_point }) {
 
     const initialFormData = {
         title: "",
@@ -15,13 +15,6 @@ export default function AppMain() {
         tags: [],
     };
 
-    const api_server = "http://localhost:8000"
-    const end_point = "/posts"
-
-    const [articles, setArticles] = useState([]);
-    const [newArticle, setNewArticle] = useState("");
-    const [modifyArticle, setModifyArticle] = useState("");
-    const [currentIndex, setCurrentIndex] = useState(null);
     const [formData, setFormData] = useState(initialFormData);
 
     const [postsData, setPostsData] = useState([])
@@ -131,7 +124,7 @@ export default function AppMain() {
 
                 <ArticleList>
                     {postsData ? postsData.map((post, index) => (
-                        <ArticleCard key={index} data={post} index={index} api_server={api_server} handleDeleteClick={handleDeleteClick} >
+                        <ArticleCard key={index} data={post} index={index} api_server={api_server} end_point={end_point} handleDeleteClick={handleDeleteClick} >
                         </ArticleCard>
                     )) : <p>No data found</p>
                     }
