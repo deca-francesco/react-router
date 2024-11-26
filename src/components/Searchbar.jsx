@@ -1,33 +1,25 @@
 import { useState, useEffect } from 'react'
 
-
 export default function SearcBar({ fetchData, postsData, setPostsData }) {
 
-    const [searchText, setSearchText] = useState('')
 
-    function search() {
+    function search(searchQuery) {
 
-        console.log(postsData);
+        const searchPosts = postsData.data.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
 
+        setPostsData({ data: searchPosts })
 
-        const searchPosts = postsData.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase()))
-
-        setPostsData(searchPosts)
-
-        if (searchText.length === 0) {
+        if (searchQuery.length === 0) {
             fetchData()
         }
     }
-
-    useEffect(search, [searchText])
 
 
     return (
         <input type="search"
             className='form-control mt-5'
             placeholder='search'
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => search(e.target.value)}
         />
     )
 }

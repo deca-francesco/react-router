@@ -15,7 +15,7 @@ export default function AppMain() {
         tags: [],
     };
 
-    const api_server = "http://localhost:3001"
+    const api_server = "http://localhost:8000"
     const end_point = "/posts"
 
     const [articles, setArticles] = useState([]);
@@ -34,7 +34,7 @@ export default function AppMain() {
 
             .then(data => {
 
-                console.log(data);
+                // console.log(data);
 
                 setPostsData(data)
 
@@ -45,6 +45,8 @@ export default function AppMain() {
 
     // esegue subito al caricamento della pagina, ma una volta sola perché non ha dipendenze
     useEffect(fetchData, [])
+
+    // useEffect(fetchData, [postsData])
 
 
     function handleFormField(e) {
@@ -89,9 +91,7 @@ export default function AppMain() {
                 console.log("result", result);
                 setPostsData(result.data)
                 setFormData(initialFormData);
-                fetchData()
             })
-
     }
 
     function handleDeleteClick(e) {
@@ -114,7 +114,6 @@ export default function AppMain() {
                 setPostsData(result.data)
             })
 
-        fetchData()
 
     }
 
