@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 
-export default function ArticleCard({ data, index, handleDeleteClick, api_server, end_point, children }) {
+export default function ArticleCard({ data, index, handleDeleteClick, api_server, children }) {
 
 
     // function handleModifyClick(e) {

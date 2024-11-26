@@ -4,6 +4,7 @@ import ArticleCard from './ArticleCard.jsx';
 import ArticleList from './ArticleList.jsx';
 import Form from './Form.jsx';
 import SearcBar from './Searchbar.jsx';
+import ArticleDetails from '../pages/ArticleDetails.jsx';
 
 
 export default function AppMain({ api_server, end_point }) {

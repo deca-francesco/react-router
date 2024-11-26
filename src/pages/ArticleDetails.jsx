@@ -1,23 +1,25 @@
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { useEffect, useState } from "react";
 
-export default function ArticleDetails({ api_server, end_point }) {
+export default function ArticleDetails({ api_server, end_point, index }) {
 
     const navigate = useNavigate()
     const [article, setArticle] = useState(null)
     const { slug } = useParams()
     // console.log(slug, useParams())
     const url = `${api_server}${end_point}/${slug}`
-    console.log(url);
+    // console.log(url);
+    // console.log(index);
+
 
     useEffect(
         () => {
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     const keys = Object.keys(data)
-                    console.log(keys);
+                    // console.log(keys);
 
                     if (keys.includes("error")) {
                         navigate("/404")
@@ -48,6 +50,13 @@ export default function ArticleDetails({ api_server, end_point }) {
                                     <div>
                                         <p>{article.content}</p>
                                         <p>Tags: {article.tags}</p>
+                                        <Link to="/posts">
+                                            <button type="button" className="btn btn-outline-dark mt-3" >Torna ai posts</button>
+                                        </ Link>
+                                        <div className="mt-4 d-none">
+                                            <button type="button" className="btn btn-outline-secondary" >Post precedente</button>
+                                            <button type="button" className="btn btn-outline-secondary ms-3" >Post successivo</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
