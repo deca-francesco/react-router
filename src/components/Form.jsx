@@ -1,4 +1,4 @@
-export default function Form({ formData, handleFormField, handleFormSubmit }) {
+export default function Form({ formData, handleFormField, handleFormSubmit, is_loading }) {
 
     const form = document.getElementById("form")
     const show_btn = document.getElementById("show-form-btn")
@@ -13,6 +13,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit }) {
         show_btn.classList.remove("d-none")
     }
 
+    console.log(is_loading);
 
 
     return (
@@ -72,7 +73,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit }) {
                     </div>
                 </div>
 
-                <button className="btn btn-success mt-3" type="submit">Inserisci</button>
+                <button className="btn btn-success mt-3" type="submit" disabled={is_loading} >Inserisci</button>
                 <button className="btn btn-secondary mt-3 ms-2" type="button" onClick={handleCloseForm}>Chiudi</button>
             </form>
         </>

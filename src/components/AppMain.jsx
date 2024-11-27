@@ -20,6 +20,8 @@ export default function AppMain({ api_server, end_point }) {
 
     const [postsData, setPostsData] = useState([])
 
+    let is_loading = false
+
 
     function fetchData(url = `${api_server}${end_point}`) {
         fetch(url)
@@ -62,9 +64,11 @@ export default function AppMain({ api_server, end_point }) {
     }
 
     function handleFormSubmit(e) {
+        is_loading = true
         e.preventDefault();
 
         // console.log(e.target);
+        console.log(is_loading);
 
 
         const titleToSlug = formData.title.split(" ").join("-");
@@ -88,6 +92,9 @@ export default function AppMain({ api_server, end_point }) {
                 console.log("result", result);
                 setPostsData(result.data)
                 setFormData(initialFormData);
+                is_loading = false
+                console.log(is_loading);
+
             })
 
     }
@@ -119,7 +126,7 @@ export default function AppMain({ api_server, end_point }) {
     return (
         <main>
             <div className="container">
-                <Form formData={formData} handleFormField={handleFormField} handleFormSubmit={handleFormSubmit} />
+                <Form formData={formData} handleFormField={handleFormField} handleFormSubmit={handleFormSubmit} is_loading={is_loading} />
 
                 <SearcBar fetchData={fetchData} postsData={postsData} setPostsData={setPostsData} />
 

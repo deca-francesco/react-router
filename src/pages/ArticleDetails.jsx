@@ -102,7 +102,7 @@ export default function ArticleDetails({ api_server, end_point }) {
                                         <Link to="/posts">
                                             <button type="button" className="btn btn-outline-dark mt-3" >Torna ai posts</button>
                                         </ Link>
-                                        <div className="mt-4 ">
+                                        <div className="mt-4 mb-4">
                                             <button type="button" className="btn btn-outline-secondary" onClick={prevHandle} >Post precedente</button>
                                             <span></span>
                                             <button type="button" className="btn btn-outline-secondary ms-3" onClick={nextHandle} >Post successivo</button>
