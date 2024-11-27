@@ -13,7 +13,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit, is_l
         show_btn.classList.remove("d-none")
     }
 
-    console.log(is_loading);
+    // console.log(is_loading);
 
 
     return (
@@ -23,7 +23,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit, is_l
             <form onSubmit={handleFormSubmit} className="mt-4 d-none" id="form">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label" >Titolo del nuovo articolo</label>
-                    <input type="text" className="form-control" name="title" id="title" placeholder="Nuovo titolo" value={formData.title} onChange={handleFormField} />
+                    <input type="text" className="form-control" name="title" id="title" placeholder="Nuovo titolo" value={formData.title} onChange={handleFormField} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="image" className="form-label">Immagine</label>
@@ -73,7 +73,7 @@ export default function Form({ formData, handleFormField, handleFormSubmit, is_l
                     </div>
                 </div>
 
-                <button className="btn btn-success mt-3" type="submit" disabled={is_loading} >Inserisci</button>
+                <button className="btn btn-success mt-3" type="submit" disabled={is_loading} >{is_loading ? "Loading" : "Inserisci"}</button>
                 <button className="btn btn-secondary mt-3 ms-2" type="button" onClick={handleCloseForm}>Chiudi</button>
             </form>
         </>

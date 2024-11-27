@@ -9,7 +9,11 @@ import ArticleDetails from './pages/ArticleDetails.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 
-function App({ api_server, end_point }) {
+const api_server = "http://localhost:8000"
+const end_point = "/posts"
+
+
+function App() {
 
 
 

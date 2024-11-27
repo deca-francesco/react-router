@@ -17,7 +17,7 @@ export default function SearcBar({ fetchData, postsData, setPostsData }) {
     return (
         <input type="search"
             className='form-control mt-5'
-            placeholder='search'
+            placeholder='Cerca'
             onChange={(e) => search(e.target.value)}
         />
     )
